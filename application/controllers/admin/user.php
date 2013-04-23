@@ -75,8 +75,8 @@ public $restful = true;
 
             $mailer = Message::to($user->userprofile->emel);
             $mailer->from('admin@3fresorces.com', 'System Generate');
-            $mailer->subject('Account Login Reset');
-            $mailer->body('view: plugins.email');
+            $mailer->subject('Account Reset');
+            $mailer->body('view: plugins.emailAccReset');
             $mailer->body->username = $uname;
             $mailer->body->password = $uname;
             $mailer->body->key = $key ;
