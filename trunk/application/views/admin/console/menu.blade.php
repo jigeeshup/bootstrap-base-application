@@ -10,8 +10,7 @@
 <div id="menuTree" class="span12">
   {{$render}}
   <div class="form-actions">
-    <button type="submit" class="btn btn-primary">Save changes</button>
-    <button type="button" class="btn">Cancel</button>
+    <button type="submit" class="btn pull-right btn-primary">Save changes</button>
   </div>
 </div>
 {{ Form::close()}}
