@@ -6,9 +6,8 @@
 </div>
 {{ Form::open('admin/console/acl', 'POST') }}
 	{{ $acree }}
-  <div class="form-actions pull-right">
-    <button type="submit" class="btn btn-primary">Save changes</button>
-    <button type="button" class="btn">Cancel</button>
+  <div class="form-actions">
+    <button type="submit" class="btn pull-right btn-primary">Save changes</button>
   </div>
 {{ Form::close()}}
 
