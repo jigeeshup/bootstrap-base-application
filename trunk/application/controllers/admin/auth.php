@@ -64,7 +64,7 @@ class Admin_Auth_Controller extends Base_Controller {
                 $mailer = Message::to($emel);
                 $mailer->from('admin@3fresorces.com', 'System Generate');
                 $mailer->subject('User Registration Information');
-                $mailer->body('view: plugins.email');
+                $mailer->body('view: plugins.emailAcc');
                 $mailer->body->username = $input['username'];
                 $mailer->body->password = $input['password'];
                 $mailer->body->key = $input['key'] ;
