@@ -1,0 +1,59 @@
+2013-04-22 04:37:52 ERROR - {closure} - syntax error, unexpected T_VARIABLE in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 46
+2013-04-22 04:38:47 ERROR - {closure} - Undefined variable: input in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 42
+2013-04-22 04:43:52 ERROR - {closure} - Undefined variable: resgisteredUser in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 37
+2013-04-22 04:44:04 ERROR - {closure} - Undefined variable: resgisteredUser in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 37
+2013-04-22 04:44:51 ERROR - {closure} - Undefined variable: input in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 42
+2013-04-22 04:49:32 ERROR - {closure} - Undefined variable: input in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 42
+2013-04-22 04:50:56 ERROR - {closure} - Missing argument 2 for {closure}(), called in /Users/3fmbp/3fprojects/archOne/bundles/messages/libraries/message.php on line 70 and defined in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 40
+2013-04-22 05:12:26 ERROR - {closure} - Call to undefined method Message::to() in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 42
+2013-04-22 06:20:35 ERROR - {closure} - syntax error, unexpected T_STRING, expecting T_VARIABLE or '$' in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 41
+2013-04-22 06:23:33 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:23:41 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:25:31 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:26:32 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:26:35 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:26:38 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:36:00 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:36:03 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:36:10 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:36:57 ERROR - {closure} - Undefined variable: username in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 14
+2013-04-22 06:38:18 ERROR - {closure} - syntax error, unexpected '<' in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 18
+2013-04-22 06:45:46 ERROR - {closure} - Undefined variable: key in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 8
+2013-04-22 06:53:19 ERROR - {closure} - Undefined variable: key in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 8
+2013-04-22 07:07:12 ERROR - {closure} - Call to a member function is() on a non-object in /Users/3fmbp/3fprojects/archOne/application/routes.php on line 34
+2013-04-22 07:31:06 ERROR - {closure} - syntax error, unexpected ';' in /Users/3fmbp/3fprojects/archOne/application/routes.php on line 45
+2013-04-22 08:07:27 ERROR - {closure} - SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`arconedb`.`users`, CONSTRAINT `userrole` FOREIGN KEY (`role`) REFERENCES `users_roles` (`roleid`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+
+SQL: DELETE FROM `users_roles` WHERE `roleid` = ?
+
+Bindings: array (
+  0 => '1',
+) in /Users/3fmbp/3fprojects/archOne/laravel/database/connection.php on line 264
+2013-04-22 08:55:21 ERROR - {closure} - Undefined index: key in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 41
+2013-04-22 09:16:44 ERROR - {closure} - Undefined index: oldpassword in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 40
+2013-04-22 09:16:55 ERROR - {closure} - Undefined index: oldpassword in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 40
+2013-04-22 09:17:22 ERROR - {closure} - Undefined variable: AG6vXKPZyt5ZZc41LYpKpOGDfHucJNfEd1O1oyX4lcyHWnO0f43yu in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 42
+2013-04-22 09:22:04 ERROR - {closure} - syntax error, unexpected T_STRING in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 42
+2013-04-22 09:22:24 ERROR - {closure} - syntax error, unexpected T_VARIABLE in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 42
+2013-04-22 09:23:01 ERROR - {closure} - syntax error, unexpected T_VARIABLE in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 41
+2013-04-22 09:49:49 ERROR - {closure} - SQLSTATE[42S22]: Column not found: 1054 Unknown column 'emel' in 'field list'
+
+SQL: SELECT `userid`, `emel` FROM `users` WHERE `validationkey` = ? AND `username` = ? AND `status` = ? LIMIT 1
+
+Bindings: array (
+  0 => 'uIWUpObrYXEQPBodkJCvjjlmbYwZphiz',
+  1 => '850614016359',
+  2 => 'Pending',
+) in /Users/3fmbp/3fprojects/archOne/laravel/database/connection.php on line 264
+2013-04-22 09:52:47 ERROR - {closure} - Class 'UserProfile' not found in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/auth.php on line 47
+2013-04-22 11:13:05 ERROR - {closure} - Undefined variable: data in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/console.php on line 159
+2013-04-22 13:42:30 ERROR - {closure} - Undefined variable: allrole in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 60
+2013-04-22 13:45:57 ERROR - {closure} - Undefined variable: data in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/console.php on line 159
+2013-04-22 14:38:46 ERROR - {closure} - Undefined variable: data in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/console.php on line 159
+2013-04-22 14:42:20 ERROR - {closure} - syntax error, unexpected ',' in /Users/3fmbp/3fprojects/archOne/laravel/view.php(386) : eval()'d code on line 59
+2013-04-22 14:53:44 ERROR - {closure} - Undefined variable: data in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/console.php on line 159
+2013-04-22 15:07:09 ERROR - {closure} - Undefined variable: data in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/console.php on line 159
+2013-04-22 15:59:18 ERROR - {closure} - Undefined variable: data in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/console.php on line 159
+2013-04-22 16:16:24 ERROR - {closure} - syntax error, unexpected ';' in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 102
+2013-04-22 16:17:49 ERROR - {closure} - Undefined index: oldpassword in /Users/3fmbp/3fprojects/archOne/application/controllers/admin/user.php on line 100
+2013-04-22 16:21:57 ERROR - {closure} - Object of class Admin_User could not be converted to string in /Users/3fmbp/3fprojects/archOne/laravel/response.php on line 272
