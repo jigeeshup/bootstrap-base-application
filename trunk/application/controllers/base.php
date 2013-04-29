@@ -7,10 +7,13 @@ class Base_Controller extends Controller {
     {
     	parent::__construct();
 
-    	View::share('navLinks', Admin_Menu::menuGenerator());
-    	View::share('sidebar', Navigator::sidebar());
-    	View::share('breadcrumb', Navigator::breadcrumb());
+        $db = Config::get('database.default');
 
+        if($db != null){
+    	   View::share('navLinks', Admin_Menu::menuGenerator());
+    	   View::share('sidebar', Navigator::sidebar());
+    	   View::share('breadcrumb', Navigator::breadcrumb());
+        }
 
 
         $class = get_called_class();
@@ -20,7 +23,11 @@ class Base_Controller extends Controller {
                 case 'Home_Controller':
                     $this->filter('before', 'nonauth');
                     break;
-                
+
+                case 'Setup_Controller':
+                    $this->filter('before', 'nonauth');
+                    break;               
+
                 case 'Admin_Auth_Controller':
                     $this->filter('before', 'auth')->except(array('authenticate','verifyupdate','logout'));
                     break;
