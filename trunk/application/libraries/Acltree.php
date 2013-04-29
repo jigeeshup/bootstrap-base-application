@@ -9,8 +9,6 @@ class Acltree{
 		$dataMassage = array();
 
 		foreach($page as $content){
-			// $pieces = explode("/", $content->controller);
-			// $dataMassage[$pieces[0]][$pieces[1]]['controller'] = $content->controller;
 			if($content->action == ''){
 				$dataMassage[$content->controller]['alias'] = $content->controlleralias ;
 			}else{
@@ -32,9 +30,6 @@ class Acltree{
 		$page = Acltree::datasource();//all();
 		$acl = Admin_UserAcl::aclRegistered();
 
-		// echo "<pre>";
-		// print_r($page);
-		// exit;
 		$content = array();
 		$fot = 1;
 		foreach ($rolelist as $role){
@@ -55,8 +50,8 @@ class Acltree{
 						$subcontent .= Form::inline_labelled_checkbox($role->role.'['.$controller.']['.$action.']', $alias);
 					}
 					$subcontent .= '</span>';
-					
 				}
+				
 				$subcontent .=  '</div >'; 
 				$subcontent .=  '<li class="divider"></li>';
 			}
@@ -68,9 +63,6 @@ class Acltree{
 			array_push($content,array(Str::upper($role->role),$subcontent,$active));
 		}
 		
-
-		// echo "<pre>";
-		// print_r($content);
 		$nav = Navigation::links($content);
 		$tab = Tabbable::tabs_left($nav);
 
@@ -82,23 +74,3 @@ class Acltree{
 }
 
 ?>
-<!-- 
-echo Tabbable::tabs_left(
-  Navigation::links(
-    array(
-      array(
-        'Section 1', 
-        "<p>I'm in Section 1.</p>", 
-        true
-      ),
-      array(
-        'Section 2', 
-        "<p>Howdy, I'm in Section 2.</p>"
-      ),
-      array(
-        'Section 3', 
-        "<p>What up girl, this is Section 3.</p>"
-      ),
-    )
-  )
-); -->
