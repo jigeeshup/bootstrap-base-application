@@ -1,5 +1,15 @@
 <?php
 
+/*********************************************************************
+*  Module : Admin
+*  Controller : Console
+*  Function : 
+*  Author :  joharijumali
+*  Description: Class for System Management Module
+**********************************************************************/
+
+
+
 class Admin_Console_Controller extends Base_Controller {
 
 	public $restful = true;
@@ -8,15 +18,20 @@ class Admin_Console_Controller extends Base_Controller {
         return Redirect::to('admin/console/menu');
     }
 
-	//get info on the current created menu
+	/**
+	 * menu RESTful function
+	 *
+	 * @return view
+	 * @author joharijumali
+	 **/
+
 	public function get_menu()
 	{
 
-
-		$data['pageExist'] = Admin_Menu::pageAccesible();
-		$data['selected'] = Menutree::dataTree();
-		$data['navigation'] = Menutree::fileTree();
-		$data['render'] = Menutree::render();
+		$data['render'] = Menutree::navTree();
+		$data['headerlist'] = $list = Admin_Nav::listheader();
+		$data['page'] = $listpage = Admin_ModulPage::listpages();
+		$data['pagelist'] = $listpage = Admin_ModulPage::listAvailpages();
 
 		return View::make('admin.console.menu',$data);
 
@@ -27,77 +42,129 @@ class Admin_Console_Controller extends Base_Controller {
 
 		$contents = Input::get();
 
-		$ctrlArrangment = count($contents) + 1;
+		foreach ($contents['module'] as $key => $value) {
+			$module = Admin_Nav::find($value);
+	        $module->step  = $key+1;
+	        $module->save();
+		}
 
-		foreach ($contents as $packet => $folder) {
-			foreach ($folder as $controller => $field) {
-
-			if(isset($field['alias']) && $field['alias'] != NULL && (isset($field['header']) || isset($field['footer']) || isset($field['id']))):
-
-				if($field['id'] == 0):
-					$menu = new Admin_Menu();
-				else:
-					$menu = Admin_Menu::find($field['id']);
-				endif;
-				
-				$menu->controller = $packet.'/'.$controller;
-				$menu->controllerAlias = $field['alias'];
-				$menu->header = (isset($field['header']) && $field['header']=='on')?1:0;
-				$menu->footer = (isset($field['footer']) && $field['footer']=='on')?1:0;
-				$menu->auth = (isset($field['auth']) && $field['auth']=='on')?1:0;
-				$menu->admin = (isset($field['admin']) && $field['admin']=='on')?1:0;
-				$menu->arrangement = isset($field['arr'])?$field['arr']:$ctrlArrangment;
-				$menu->save();
-
-				$isAdmin = (isset($field['admin']) && $field['admin'] == 'on')?1:0;
-
-				unset($field['alias']);
-				unset($field['header']);
-				unset($field['footer']);
-				unset($field['auth']);
-				unset($field['arr']);
-				unset($field['id']);
-				unset($field['admin']);
-
-				$actionArrangment = count($field) + 1;
-
-				foreach ($field as $action => $actionVal) {
-
-					if($actionVal['id'] == 0):
-						$subMenu = new Admin_Menu();
-					else:
-						$subMenu = Admin_Menu::find($actionVal['id']);
-					endif;
-
-					if(isset($actionVal['alias']) && $actionVal['alias'] != NULL && (isset($actionVal['header']) || isset($actionVal['footer']) || isset($actionVal['auth']) || isset($actionVal['id'])) ):
-
-						$subMenu->controller = $packet.'/'.$controller;
-						$subMenu->action = $action;
-						$subMenu->actionAlias = $actionVal['alias'];
-						$subMenu->header = (isset($actionVal['header']) && $actionVal['header']=='on')?1:0;
-						$subMenu->footer = (isset($actionVal['footer']) && $actionVal['footer']=='on')?1:0;
-						$subMenu->auth = (isset($actionVal['auth']) && $actionVal['auth']=='on')?1:0;
-						$subMenu->admin = ($isAdmin)?$isAdmin:((isset($actionVal['admin']) && $actionVal['admin']=='on')?1:0);
-						$subMenu->arrangement = isset($actionVal['arr'])?$actionVal['arr']:$actionArrangment;
-						$subMenu->save();
-					elseif(((!isset($actionVal['alias']) || $actionVal['alias'] == NULL) && $actionVal['id'] != 0) || isset($actionVal['remove']) ):
-						$menu = Admin_Menu::find($actionVal['id'])->delete();
-					endif;
-
-					$actionArrangment++;
-				}
-			elseif(((!isset($field['alias']) || $field['alias'] == NULL) && $field['id'] != 0 ) || isset($field['remove']) ):
-				$menu = Admin_Menu::find($field['id'])->delete();
-			endif;
-
-			$ctrlArrangment++;
-
-			}
+		foreach ($contents['parent'] as $key => $value) {
+			$module = Admin_Navpage::find($value);
+	        $module->parentstep  = $key+1;
+	        $module->save();
 		}
 
 		return Redirect::to('admin/console/menu');
+	}
+
+	/**
+	 * navigation utilities function
+	 *
+	 * @return json data
+	 * 
+	 **/
+
+	public function get_navchild(){
+
+		$input = Input::get();
+
+        $navigation = Admin_Navpage::find($input['navid']);
+        $nav = Admin_Nav::find($navigation->navheaderid);
+        $parent = Admin_ModulPage::find($navigation->modulpageid);
+
+        $data['navheaderid'] = $navigation->navheaderid;
+        $data['module'] = $nav->navheader;
+        $data['parentid'] = $navigation->navpageid;
+        $data['parent'] = $parent->actionalias;
+
+        return json_encode($data);
+	}
+
+	public function get_resetnavdata(){
+
+		$data['navheaderid'] = $list = Admin_Nav::listheader();
+		// $data['page'] = $listpage = Admin_ModulPage::listpages();
+		$data['modulpageid'] = $listpage = Admin_ModulPage::listAvailpages();
+
+		return json_encode($data);
 
 	}
+
+	public function post_setmodule(){
+		
+		$input = Input::get();
+
+		// if($input['roleid'] == NULL):
+		$module = new Admin_Nav;
+		// else:
+		// 	$role = Admin_UserRole::find($input['roleid']);
+		// endif;
+        $module->navheader  = $input['navheader'];
+        $module->save();
+
+		return Menutree::navTree();
+	}
+
+	public function post_setpage(){
+		
+		$input = Input::get();
+
+		// if($input['roleid'] == NULL):
+		$pages = new Admin_Navpage;
+		// else:
+		// 	$role = Admin_UserRole::find($input['roleid']);
+		// endif;
+        $pages->navheaderid  = $input['navheaderid'];
+        $pages->modulpageid  = $input['modulpageid'];
+        $pages->save();
+
+		return Menutree::navTree();
+	}
+
+	public function post_setchild(){
+
+		$input = Input::get();
+
+				// if($input['roleid'] == NULL):
+		$pages = new Admin_Navpage;
+		// else:
+		// 	$role = Admin_UserRole::find($input['roleid']);
+		// endif;
+        $pages->navheaderid  = $input['navheaderid'];
+        $pages->parentid  = $input['parentid'];
+        $pages->modulpageid  = $input['modulpageid'];
+        $pages->save();
+
+		return Menutree::navTree();
+	}
+
+    public function post_deletepages(){
+        
+        $input = Input::get();
+
+        Admin_Navpage::find($input['id'])->delete();
+
+        return Menutree::navTree();
+    }
+
+    public function post_deletemodule(){
+        
+        $input = Input::get();
+
+        Admin_Nav::find($input['id'])->delete();
+        Admin_Navpage::where('navheaderid','=',$input['id'])->delete();
+
+        return Menutree::navTree();
+    }
+
+
+	/**
+	 * ACL RESTful function
+	 *
+	 * @return view
+	 * @author joharijumali
+	 * 
+	 **/
 
 	public function get_acl(){
 
@@ -114,7 +181,6 @@ class Admin_Console_Controller extends Base_Controller {
 	public function post_acl(){
 
 		$input = Input::get();
-		// echo "<pre>"; print_r($input);exit;
 
 		foreach($input as $role => $content){
 
@@ -152,13 +218,6 @@ class Admin_Console_Controller extends Base_Controller {
 
 	}
 
-	public function get_setnav(){
-
-		
-
-		return View::make('admin.console.setnav',$data);
-
-	}
 
 
 }
