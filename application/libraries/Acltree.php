@@ -33,7 +33,7 @@ class Acltree{
 		$content = array();
 		$fot = 1;
 		foreach ($rolelist as $role){
-			$subcontent = '';
+			$subcontent = '<h3>'.Str::upper($role->role." Setup").'</h3>';
 			$subcontent .= '<ul class="nav nav-list">';
 			foreach ($page as $controller => $selection){
 
