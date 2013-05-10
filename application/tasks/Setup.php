@@ -176,7 +176,7 @@ class Setup_Task {
 			
 			foreach ($content as $submodul => $subcontent) {
 
-				$modulModel = new Admin_Modul;
+				$modulModel = new Admin_ModulPage;
 				$modulModel->modul = $modul;
 				$modulModel->controller = $submodul;
 				$modulModel->visible = 1;
@@ -190,7 +190,7 @@ class Setup_Task {
 
 				$actArr = 1;
 				foreach ($subcontent as $action) {
-					$modulModel = new Admin_Modul;
+					$modulModel = new Admin_ModulPage;
 					$modulModel->modul = $modul;
 					$modulModel->controller = $submodul;
 					$modulModel->action = $action;
