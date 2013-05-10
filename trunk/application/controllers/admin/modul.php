@@ -1,4 +1,11 @@
 <?php
+/*********************************************************************
+*  Module : Admin
+*  Controller : Module
+*  Function : 
+*  Author :  joharijumali
+*  Description: Class for Modul Management Module
+**********************************************************************/
 
 class Admin_Modul_Controller extends Base_Controller {
 
@@ -7,6 +14,13 @@ class Admin_Modul_Controller extends Base_Controller {
     public function get_index(){
         return Redirect::to('admin/modul/application');
     }
+
+    /**
+     * application RESTful function
+     * Setup pages
+     * @return view
+     * @author joharijumali
+     **/
 
     public function get_application(){
 
@@ -22,11 +36,18 @@ class Admin_Modul_Controller extends Base_Controller {
 
         $contents = Input::all();
 
-        Admin_Modul::setPages($contents);
+        Admin_ModulPage::setPages($contents);
 
         return Redirect::to('admin/modul/application');
 
     }	
+
+    /**
+     * register RESTful function
+     * Setup modul
+     * @return view
+     * @author joharijumali
+     **/
 
     public function get_register(){
 
